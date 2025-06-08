@@ -2,11 +2,9 @@ import pytest
 from playwright.sync_api import expect, Page
 
 
-@pytest.fixture
-def page(page: Page):
-    page.goto('')
-    yield page
-    # do cleanup
+@pytest.fixture(scope='session', autouse=True)
+def global_setup_available_everywhere():
+    print('Global setup for entire test run of all applicable tests')
 
 
 def test_one(page: Page):
